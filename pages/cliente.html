@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Cuenta - Fashotf Delivery</title>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="nav-logo">
+    <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
+    <span class="logo-text">FASHOTF</span>
+    <span class="logo-sub">DELIVERY</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="../index.html"><i class="fa-solid fa-compass"></i> Explorar</a></li>
+    <li><a href="menu.html"><i class="fa-solid fa-utensils"></i> Menú</a></li>
+    <li><a href="ofertas.html"><i class="fa-solid fa-fire"></i> Ofertas</a></li>
+    <li><a href="rastreo.html"><i class="fa-solid fa-map-pin"></i> Rastreo</a></li>
+    <li><a href="historial.html"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a></li>
+    <li><a href="cliente.html" class="active"><i class="fa-solid fa-user"></i> Mi Cuenta</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="carrito.html" class="btn-cart"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count" id="cartCount">0</span></a>
+    <a href="login.html" class="btn-login"><i class="fa-solid fa-right-to-bracket"></i> Sesión</a>
+  </div>
+</nav>
+
+<section class="page-header">
+  <div class="container">
+    <h1><i class="fa-solid fa-user-gear" style="color:var(--orange);"></i> Panel de Cliente</h1>
+    <p>Gestiona tu perfil, direcciones y métodos de pago</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="client-layout">
+    <!-- SIDEBAR -->
+    <aside class="client-sidebar">
+      <div class="client-avatar-wrapper">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Juan García" class="client-avatar-img" />
+        <div class="client-name">Juan García</div>
+        <div class="client-email">juan.garcia@email.com</div>
+        <span class="client-tag"><i class="fa-solid fa-crown"></i> FashClub Premium</span>
+      </div>
+      <nav class="client-nav">
+        <button class="client-nav-btn active" onclick="switchClientTab('perfil', this)"><i class="fa-solid fa-user"></i> Perfil Personal</button>
+        <button class="client-nav-btn" onclick="switchClientTab('direcciones', this)"><i class="fa-solid fa-location-dot"></i> Mis Direcciones</button>
+        <button class="client-nav-btn" onclick="switchClientTab('pagos', this)"><i class="fa-solid fa-credit-card"></i> Métodos de Pago</button>
+        <button class="client-nav-btn" onclick="switchClientTab('ajustes', this)"><i class="fa-solid fa-sliders"></i> Preferencias</button>
+        <a href="login.html" class="client-nav-btn" style="color:var(--red);margin-top:16px;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+      </nav>
+    </aside>
+
+    <!-- CONTENT -->
+    <main>
+      <!-- TAB PERFIL -->
+      <div id="tab-perfil" class="client-tab-content">
+        <div class="client-card">
+          <div class="client-card-title"><span><i class="fa-solid fa-id-card"></i> Datos Personales</span></div>
+          <form onsubmit="event.preventDefault(); showToast('Información actualizada correctamente', 'fa-check');">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div class="form-group"><label>Nombre Completo</label><input type="text" value="Juan García" required /></div>
+              <div class="form-group"><label>Correo Electrónico</label><input type="email" value="juan.garcia@email.com" required /></div>
+              <div class="form-group"><label>Teléfono</label><input type="tel" value="+57 300 123 4567" required /></div>
+              <div class="form-group"><label>Ciudad</label><input type="text" value="Bogotá, Colombia" required /></div>
+            </div>
+            <button type="submit" class="btn-primary" style="margin-top:10px;"><i class="fa-solid fa-floppy-disk"></i> Guardar Cambios</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- TAB DIRECCIONES -->
+      <div id="tab-direcciones" class="client-tab-content" style="display:none;">
+        <div class="client-card">
+          <div class="client-card-title">
+            <span><i class="fa-solid fa-map-location-dot"></i> Direcciones Guardadas</span>
+            <button class="btn-primary" style="font-size:13px;padding:8px 16px;" onclick="showToast('Formulario de nueva dirección abierto', 'fa-plus')"><i class="fa-solid fa-plus"></i> Nueva Dirección</button>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;justify-content:space-between;align-items:center;">
+              <div>
+                <div style="font-weight:700;display:flex;align-items:center;gap:8px;"><i class="fa-solid fa-house" style="color:var(--orange)"></i> Casa (Principal)</div>
+                <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">Carrera 15 #45-23, Apto 301 · Bogotá</div>
+              </div>
+              <button class="btn-secondary" style="padding:6px 12px;font-size:12px;" onclick="showToast('Dirección seleccionada', 'fa-check')">Editar</button>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;justify-content:space-between;align-items:center;">
+              <div>
+                <div style="font-weight:700;display:flex;align-items:center;gap:8px;"><i class="fa-solid fa-briefcase" style="color:var(--teal)"></i> Oficina</div>
+                <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">Calle 93 #11-19, Oficina 502 · Bogotá</div>
+              </div>
+              <button class="btn-secondary" style="padding:6px 12px;font-size:12px;" onclick="showToast('Dirección seleccionada', 'fa-check')">Editar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB PAGOS -->
+      <div id="tab-pagos" class="client-tab-content" style="display:none;">
+        <div class="client-card">
+          <div class="client-card-title">
+            <span><i class="fa-solid fa-wallet"></i> Métodos de Pago Guardados</span>
+            <button class="btn-primary" style="font-size:13px;padding:8px 16px;" onclick="showToast('Agregar tarjeta iniciado', 'fa-credit-card')"><i class="fa-solid fa-plus"></i> Agregar Tarjeta</button>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;justify-content:space-between;align-items:center;">
+              <div style="display:flex;align-items:center;gap:14px;">
+                <i class="fa-brands fa-cc-visa" style="font-size:32px;color:var(--teal)"></i>
+                <div>
+                  <div style="font-weight:700;">Visa terminado en **** 4829</div>
+                  <div style="font-size:12px;color:var(--text-muted);">Vence 12/28 · Principal</div>
+                </div>
+              </div>
+              <span class="tag" style="color:var(--teal)">Predeterminada</span>
+            </div>
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;justify-content:space-between;align-items:center;">
+              <div style="display:flex;align-items:center;gap:14px;">
+                <i class="fa-brands fa-cc-mastercard" style="font-size:32px;color:var(--orange)"></i>
+                <div>
+                  <div style="font-weight:700;">Mastercard terminado en **** 8812</div>
+                  <div style="font-size:12px;color:var(--text-muted);">Vence 09/27</div>
+                </div>
+              </div>
+              <button class="btn-secondary" style="padding:6px 12px;font-size:12px;" onclick="showToast('Tarjeta configurada', 'fa-check')">Usar esta</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB AJUSTES -->
+      <div id="tab-ajustes" class="client-tab-content" style="display:none;">
+        <div class="client-card">
+          <div class="client-card-title"><span><i class="fa-solid fa-bell"></i> Notificaciones y Seguridad</span></div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <label style="display:flex;align-items:center;justify-content:space-between;font-size:14px;cursor:pointer;">
+              <span>Recibir estado de pedidos por SMS / WhatsApp</span>
+              <input type="checkbox" checked style="width:20px;height:20px;accent-color:var(--orange);" />
+            </label>
+            <label style="display:flex;align-items:center;justify-content:space-between;font-size:14px;cursor:pointer;">
+              <span>Ofertas y promociones exclusivas por Email</span>
+              <input type="checkbox" checked style="width:20px;height:20px;accent-color:var(--orange);" />
+            </label>
+            <label style="display:flex;align-items:center;justify-content:space-between;font-size:14px;cursor:pointer;">
+              <span>Autenticación de dos factores (2FA)</span>
+              <input type="checkbox" style="width:20px;height:20px;accent-color:var(--orange);" />
+            </label>
+          </div>
+          <button class="btn-primary" style="margin-top:24px;" onclick="showToast('Preferencias guardadas', 'fa-check')"><i class="fa-solid fa-sliders"></i> Actualizar Preferencias</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container"><div class="footer-bottom">© 2026 FASHOTF DELIVERY. Todos los derechos reservados.</div></div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+function switchClientTab(tabName, btn) {
+  document.querySelectorAll('.client-nav-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.client-tab-content').forEach(c => c.style.display = 'none');
+  document.getElementById('tab-' + tabName).style.display = 'block';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mis Pedidos - Fashotf Delivery</title>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    .hist-layout { display: grid; grid-template-columns: 1fr 320px; gap: 32px; padding: 32px 0 80px; }
+    .order-hist-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 16px; transition: all 0.2s; }
+    .order-hist-card:hover { border-color: rgba(255,90,31,0.3); }
+    .order-hist-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+    .order-hist-id { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+    .order-hist-rest { font-weight: 800; font-size: 16px; }
+    .status-badge { padding: 4px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+    .status-entregado { background: rgba(0,212,170,0.15); color: var(--teal); }
+    .status-cancelado { background: rgba(239,68,68,0.15); color: var(--red); }
+    .status-en-camino { background: rgba(255,90,31,0.15); color: var(--orange); }
+    .order-items-list { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .order-item-chip { background: var(--surface2); border-radius: 8px; padding: 4px 10px; font-size: 13px; }
+    .order-hist-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid var(--border); }
+    .order-date { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+    .order-total-sm { font-size: 18px; font-weight: 800; color: var(--orange); }
+    .profile-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 20px; }
+    .avatar { width: 70px; height: 70px; border-radius: 50%; overflow: hidden; margin: 0 auto 16px; border: 2px solid var(--orange); }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .stats-mini { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+    .stat-mini { background: var(--surface2); border-radius: 12px; padding: 14px; text-align: center; }
+    .stat-mini-num { font-size: 22px; font-weight: 800; color: var(--orange); }
+    .stat-mini-lbl { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+    .fav-item { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+    .fav-img { width: 40px; height: 40px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+    .fav-img img { width: 100%; height: 100%; object-fit: cover; }
+    @media(max-width:1024px){ .hist-layout{ grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="nav-logo"><div class="logo-icon"><i class="fa-solid fa-bolt"></i></div><span class="logo-text">FASHOTF</span><span class="logo-sub">DELIVERY</span></div>
+  <ul class="nav-links">
+    <li><a href="../index.html"><i class="fa-solid fa-compass"></i> Explorar</a></li>
+    <li><a href="menu.html"><i class="fa-solid fa-utensils"></i> Menú</a></li>
+    <li><a href="ofertas.html"><i class="fa-solid fa-fire"></i> Ofertas</a></li>
+    <li><a href="rastreo.html"><i class="fa-solid fa-map-pin"></i> Rastreo</a></li>
+    <li><a href="historial.html" class="active"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a></li>
+    <li><a href="cliente.html"><i class="fa-solid fa-user"></i> Mi Cuenta</a></li>
+  </ul>
+  <div class="nav-actions"><a href="carrito.html" class="btn-cart"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count" id="cartCount">0</span></a><a href="login.html" class="btn-login"><i class="fa-solid fa-right-to-bracket"></i> Sesión</a></div>
+</nav>
+
+<section class="page-header">
+  <div class="container"><h1><i class="fa-solid fa-clock-rotate-left" style="color:var(--orange)"></i> Mis Pedidos</h1><p>Historial completo de tus compras y pedidos guardados</p></div>
+</section>
+
+<div class="container">
+  <div class="hist-layout">
+    <div>
+      <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
+        <button class="cat-chip active" onclick="filterHist(this,'todos')">Todos</button>
+        <button class="cat-chip" onclick="filterHist(this,'entregado')"><i class="fa-solid fa-check" style="color:var(--teal)"></i> Entregados</button>
+        <button class="cat-chip" onclick="filterHist(this,'en-camino')"><i class="fa-solid fa-motorcycle" style="color:var(--orange)"></i> En camino</button>
+        <button class="cat-chip" onclick="filterHist(this,'cancelado')"><i class="fa-solid fa-xmark" style="color:var(--red)"></i> Cancelados</button>
+      </div>
+      <div id="histList"></div>
+    </div>
+    <div>
+      <div class="profile-card">
+        <div class="avatar"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Juan García" /></div>
+        <div style="text-align:center;">
+          <div style="font-weight:800;font-size:18px;">Juan García</div>
+          <div style="font-size:13px;color:var(--text-muted);margin:4px 0 16px;">juan.garcia@email.com</div>
+          <a href="fash-club.html" style="background:rgba(255,90,31,0.15);border-radius:10px;padding:8px 16px;font-size:13px;font-weight:700;color:var(--orange);display:inline-flex;align-items:center;gap:6px;"><i class="fa-solid fa-crown"></i> FashClub Premium</a>
+        </div>
+      </div>
+      <div class="profile-card">
+        <div style="font-weight:700;font-size:15px;margin-bottom:16px;">Tus estadísticas</div>
+        <div class="stats-mini">
+          <div class="stat-mini"><div class="stat-mini-num">23</div><div class="stat-mini-lbl">Pedidos totales</div></div>
+          <div class="stat-mini"><div class="stat-mini-num">$342</div><div class="stat-mini-lbl">Total gastado</div></div>
+          <div class="stat-mini"><div class="stat-mini-num">18m</div><div class="stat-mini-lbl">Promedio</div></div>
+          <div class="stat-mini"><div class="stat-mini-num">4.8 <i class="fa-solid fa-star" style="font-size:14px;color:var(--yellow)"></i></div><div class="stat-mini-lbl">Tu rating</div></div>
+        </div>
+      </div>
+      <div class="profile-card">
+        <div style="font-weight:700;font-size:15px;margin-bottom:14px;">Favoritos</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="fav-item"><div class="fav-img"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=150&q=80" alt="Burger" /></div><div><div style="font-weight:700;">Doble Bacon Burger</div><div style="font-size:12px;color:var(--text-muted);">Burger Palace</div></div></div>
+          <div class="fav-item"><div class="fav-img"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=150&q=80" alt="Pizza" /></div><div><div style="font-weight:700;">Pizza Napolitana</div><div style="font-size:12px;color:var(--text-muted);">Pizza Roma</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer"><div class="container"><div class="footer-bottom">© 2026 FASHOTF DELIVERY. Todos los derechos reservados.</div></div></footer>
+
+<script src="../js/main.js"></script>
+<script>
+const ORDERS = [
+  { id:'#F-2024', rest:'Burger Palace', items:['Doble Bacon Burger','Frappé Caramelo'], status:'entregado', date:'18 Abr 2026 · 7:30 PM', total:21.00, img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=150&q=80' },
+  { id:'#F-2023', rest:'Tokyo House', items:['Sushi Roll x12'], status:'entregado', date:'15 Abr 2026 · 1:15 PM', total:22.00, img:'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=150&q=80' },
+  { id:'#F-2022', rest:'Pizza Roma', items:['Pizza Napolitana','Bowl de Salmón'], status:'entregado', date:'12 Abr 2026 · 8:00 PM', total:34.90, img:'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=150&q=80' },
+  { id:'#F-2021', rest:'Chicken Bros', items:['Pollo BBQ Crujiente'], status:'cancelado', date:'10 Abr 2026 · 6:45 PM', total:12.50, img:'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=150&q=80' },
+  { id:'#F-2020', rest:'Fresh Bowl', items:['Bowl de Salmón','Smoothie'], status:'entregado', date:'8 Abr 2026 · 12:30 PM', total:25.90, img:'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=150&q=80' }
+];
+
+function renderHist(filter='todos') {
+  const filtered = filter === 'todos' ? ORDERS : ORDERS.filter(o => o.status === filter);
+  document.getElementById('histList').innerHTML = filtered.length ? filtered.map(o => `
+    <div class="order-hist-card">
+      <div class="order-hist-header">
+        <div>
+          <div class="order-hist-id">${o.id}</div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <img src="${o.img}" style="width:36px;height:36px;border-radius:8px;object-fit:cover;" alt="${o.rest}" />
+            <span class="order-hist-rest">${o.rest}</span>
+          </div>
+        </div>
+        <span class="status-badge status-${o.status}">${o.status === 'entregado' ? '<i class="fa-solid fa-check"></i> Entregado' : o.status === 'cancelado' ? '<i class="fa-solid fa-xmark"></i> Cancelado' : '<i class="fa-solid fa-motorcycle"></i> En camino'}</span>
+      </div>
+      <div class="order-items-list">${o.items.map(i => `<span class="order-item-chip">${i}</span>`).join('')}</div>
+      <div class="order-hist-footer">
+        <div><div class="order-date"><i class="fa-solid fa-calendar-days"></i> ${o.date}</div></div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span class="order-total-sm">$${o.total.toFixed(2)}</span>
+          <button onclick="addToCart({id:1,name:'${o.items[0]}',price:${o.total},image:'${o.img}'})" style="padding:8px 16px;background:rgba(255,90,31,0.15);border:1px solid rgba(255,90,31,0.3);border-radius:10px;color:var(--orange);font-weight:700;font-size:13px;cursor:pointer;font-family:'Outfit',sans-serif;display:inline-flex;align-items:center;gap:6px;"><i class="fa-solid fa-rotate-right"></i> Repetir pedido</button>
+        </div>
+      </div>
+    </div>
+  `).join('') : '<div style="text-align:center;padding:60px;color:var(--text-muted);">No hay pedidos en esta categoría</div>';
+}
+
+function filterHist(el, f) {
+  document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  renderHist(f);
+}
+document.addEventListener('DOMContentLoaded', () => renderHist());
+</script>
+</body>
+</html>

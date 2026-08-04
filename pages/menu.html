@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menú - Fashotf Delivery</title>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    .menu-layout { display: grid; grid-template-columns: 280px 1fr; gap: 32px; padding: 32px 0 80px; }
+    .sidebar { position: sticky; top: 90px; height: fit-content; }
+    .sidebar-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; }
+    .sidebar-card h3 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 14px; }
+    .filter-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; margin-bottom: 4px; }
+    .filter-item:hover, .filter-item.active { background: rgba(255,90,31,0.15); color: var(--orange); }
+    .price-range { display: flex; gap: 8px; flex-wrap: wrap; }
+    .price-btn { padding: 7px 14px; background: var(--surface2); border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid var(--border); transition: all 0.2s; }
+    .price-btn:hover, .price-btn.active { background: var(--orange); border-color: var(--orange); color: #fff; }
+    .search-bar { display: flex; gap: 12px; margin-bottom: 28px; }
+    .search-bar input { flex: 1; padding: 14px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; color: var(--text); font-family: 'Outfit', sans-serif; font-size: 15px; outline: none; }
+    .search-bar input:focus { border-color: var(--orange); }
+    .search-bar button { padding: 14px 24px; background: var(--orange); color: #fff; border-radius: 14px; border: none; cursor: pointer; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; }
+    .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .sort-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+    .sort-row span { color: var(--text-muted); font-size: 14px; }
+    .sort-select { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 8px 14px; border-radius: 10px; font-family: 'Outfit', sans-serif; font-size: 14px; cursor: pointer; }
+    @media(max-width:1024px){ .menu-layout{ grid-template-columns:1fr; } .sidebar{ position:static; } .menu-grid{ grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:600px){ .menu-grid{ grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="nav-logo">
+    <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
+    <span class="logo-text">FASHOTF</span>
+    <span class="logo-sub">DELIVERY</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="../index.html"><i class="fa-solid fa-compass"></i> Explorar</a></li>
+    <li><a href="menu.html" class="active"><i class="fa-solid fa-utensils"></i> Menú</a></li>
+    <li><a href="ofertas.html"><i class="fa-solid fa-fire"></i> Ofertas</a></li>
+    <li><a href="rastreo.html"><i class="fa-solid fa-map-pin"></i> Rastreo</a></li>
+    <li><a href="historial.html"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a></li>
+    <li><a href="cliente.html"><i class="fa-solid fa-user"></i> Mi Cuenta</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="carrito.html" class="btn-cart"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count" id="cartCount">0</span></a>
+    <a href="login.html" class="btn-login"><i class="fa-solid fa-right-to-bracket"></i> Sesión</a>
+  </div>
+</nav>
+
+<section class="page-header">
+  <div class="container">
+    <h1><i class="fa-solid fa-utensils" style="color:var(--orange)"></i> Nuestro Menú</h1>
+    <p>Encuentra tu comida favorita entre más de 200 opciones</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="search-bar" style="margin-top:32px;">
+    <input type="text" placeholder="Buscar burgers, pizzas, sushi..." id="searchInput" oninput="searchProducts()"/>
+    <button onclick="searchProducts()"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+  </div>
+  <div class="menu-layout">
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <h3>Categorías</h3>
+        <div class="filter-item active" onclick="menuFilter(this,'todos')"><span><i class="fa-solid fa-utensils"></i> Todos</span> <span>200+</span></div>
+        <div class="filter-item" onclick="menuFilter(this,'burger')"><span><i class="fa-solid fa-burger"></i> Burgers</span> <span>45</span></div>
+        <div class="filter-item" onclick="menuFilter(this,'pizza')"><span><i class="fa-solid fa-pizza-slice"></i> Pizzas</span> <span>32</span></div>
+        <div class="filter-item" onclick="menuFilter(this,'sushi')"><span><i class="fa-solid fa-fish"></i> Sushi</span> <span>28</span></div>
+        <div class="filter-item" onclick="menuFilter(this,'pollo')"><span><i class="fa-solid fa-drumstick-bite"></i> Pollo</span> <span>37</span></div>
+        <div class="filter-item" onclick="menuFilter(this,'saludable')"><span><i class="fa-solid fa-leaf"></i> Saludable</span> <span>41</span></div>
+        <div class="filter-item" onclick="menuFilter(this,'bebidas')"><span><i class="fa-solid fa-glass-water"></i> Bebidas</span> <span>19</span></div>
+        <div class="filter-item" onclick="menuFilter(this,'postres')"><span><i class="fa-solid fa-cake-candles"></i> Postres</span> <span>22</span></div>
+      </div>
+      <div class="sidebar-card">
+        <h3>Precio</h3>
+        <div class="price-range">
+          <div class="price-btn">$0-10</div>
+          <div class="price-btn active">$10-20</div>
+          <div class="price-btn">$20+</div>
+        </div>
+      </div>
+      <div class="sidebar-card">
+        <h3>Calificación</h3>
+        <div class="filter-item active" onclick="menuFilter(this,'todos')"><span><i class="fa-solid fa-star" style="color:var(--yellow)"></i> Todos</span></div>
+        <div class="filter-item"><span><i class="fa-solid fa-star" style="color:var(--yellow)"></i> 5.0 Estrellas</span></div>
+        <div class="filter-item"><span><i class="fa-solid fa-star" style="color:var(--yellow)"></i> 4.5+ Estrellas</span></div>
+        <div class="filter-item"><span><i class="fa-solid fa-star" style="color:var(--yellow)"></i> 4.0+ Estrellas</span></div>
+      </div>
+    </aside>
+    <main>
+      <div class="sort-row">
+        <span id="productCount">Mostrando 8 productos</span>
+        <select class="sort-select" onchange="sortProducts(this.value)">
+          <option value="popular">Más populares</option>
+          <option value="price_asc">Menor precio</option>
+          <option value="price_desc">Mayor precio</option>
+          <option value="rating">Mejor calificación</option>
+        </select>
+      </div>
+      <div class="menu-grid" id="menuGrid"></div>
+    </main>
+  </div>
+</div>
+
+<footer class="footer"><div class="container"><div class="footer-bottom">© 2026 FASHOTF DELIVERY. Todos los derechos reservados.</div></div></footer>
+
+<script src="../js/main.js"></script>
+<script src="../js/products.js"></script>
+<script>
+function menuFilter(el, cat) {
+  document.querySelectorAll('.filter-item').forEach(f => f.classList.remove('active'));
+  el.classList.add('active');
+  renderMenuGrid(cat);
+}
+function renderMenuGrid(filter = 'todos') {
+  const grid = document.getElementById('menuGrid');
+  const filtered = filter === 'todos' ? PRODUCTS : PRODUCTS.filter(p => p.cat === filter);
+  document.getElementById('productCount').textContent = `Mostrando ${filtered.length} productos`;
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card" onclick="addToCart({id:${p.id}, name:'${p.name}', price:${p.price}, image:'${p.image}'})">
+      <div class="product-img">
+        ${p.badge ? `<div class="product-badge"><i class="fa-solid fa-bolt"></i> ${p.badge}</div>` : ''}
+        <img src="${p.image}" alt="${p.name}" loading="lazy" />
+      </div>
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div class="product-rest"><i class="fa-solid fa-store"></i> ${p.rest}</div>
+        <div class="product-footer">
+          <div>
+            <div class="product-price">$${p.price.toFixed(2)}</div>
+            <div class="product-rating"><i class="fa-solid fa-star"></i> ${p.rating}</div>
+          </div>
+          <button class="btn-add" onclick="event.stopPropagation(); addToCart({id:${p.id}, name:'${p.name}', price:${p.price}, image:'${p.image}'})"><i class="fa-solid fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+function searchProducts() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || p.rest.toLowerCase().includes(q));
+  const grid = document.getElementById('menuGrid');
+  document.getElementById('productCount').textContent = `Mostrando ${filtered.length} productos`;
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card" onclick="addToCart({id:${p.id}, name:'${p.name}', price:${p.price}, image:'${p.image}'})">
+      <div class="product-img"><img src="${p.image}" alt="${p.name}" loading="lazy" /></div>
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div class="product-rest"><i class="fa-solid fa-store"></i> ${p.rest}</div>
+        <div class="product-footer">
+          <div><div class="product-price">$${p.price.toFixed(2)}</div><div class="product-rating"><i class="fa-solid fa-star"></i> ${p.rating}</div></div>
+          <button class="btn-add" onclick="event.stopPropagation(); addToCart({id:${p.id}, name:'${p.name}', price:${p.price}, image:'${p.image}'})"><i class="fa-solid fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+function sortProducts(val) {
+  let sorted = [...PRODUCTS];
+  if (val === 'price_asc') sorted.sort((a,b) => a.price - b.price);
+  if (val === 'price_desc') sorted.sort((a,b) => b.price - a.price);
+  if (val === 'rating') sorted.sort((a,b) => b.rating - a.rating);
+  const grid = document.getElementById('menuGrid');
+  grid.innerHTML = sorted.map(p => `
+    <div class="product-card" onclick="addToCart({id:${p.id}, name:'${p.name}', price:${p.price}, image:'${p.image}'})">
+      <div class="product-img"><img src="${p.image}" alt="${p.name}" loading="lazy" /></div>
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div class="product-rest"><i class="fa-solid fa-store"></i> ${p.rest}</div>
+        <div class="product-footer">
+          <div><div class="product-price">$${p.price.toFixed(2)}</div><div class="product-rating"><i class="fa-solid fa-star"></i> ${p.rating}</div></div>
+          <button class="btn-add" onclick="event.stopPropagation(); addToCart({id:${p.id}, name:'${p.name}', price:${p.price}, image:'${p.image}'})"><i class="fa-solid fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+document.addEventListener('DOMContentLoaded', renderMenuGrid);
+</script>
+</body>
+</html>

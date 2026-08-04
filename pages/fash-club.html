@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FashClub - Fashotf Delivery</title>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    .club-hero { text-align: center; padding: 110px 24px 80px; position: relative; overflow: hidden; }
+    .club-hero .orb { position: absolute; border-radius: 50%; filter: blur(100px); }
+    .club-hero .orb1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(124,58,237,0.4), transparent); top: -200px; left: 50%; transform: translateX(-50%); }
+    .crown-big { font-size: 72px; color: var(--yellow); display: block; margin-bottom: 24px; animation: float 4s ease-in-out infinite; }
+    .club-hero h1 { font-family: 'Bebas Neue'; font-size: 72px; background: linear-gradient(135deg, #c4b5fd, #8b5cf6, #c4b5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px; }
+    .club-hero p { font-size: 18px; color: var(--text-muted); max-width: 500px; margin: 0 auto 40px; }
+    .plans-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; max-width: 1000px; margin: 0 auto 80px; }
+    .plan-card { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; padding: 36px 28px; text-align: center; position: relative; overflow: hidden; transition: all 0.3s; }
+    .plan-card:hover { transform: translateY(-8px); }
+    .plan-card.featured { border-color: var(--purple); background: linear-gradient(180deg, rgba(124,58,237,0.1), var(--surface)); }
+    .plan-card.featured::before { content: 'MÁS POPULAR'; position: absolute; top: 14px; left: 50%; transform: translateX(-50%); background: var(--purple); color: #fff; font-size: 10px; font-weight: 800; padding: 4px 14px; border-radius: 20px; letter-spacing: 1px; white-space: nowrap; }
+    .plan-icon { font-size: 42px; display: block; margin-bottom: 16px; color: var(--purple); }
+    .plan-name { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .plan-price { font-family: 'Bebas Neue'; font-size: 56px; line-height: 1; margin-bottom: 4px; }
+    .plan-price span { font-family: 'Outfit'; font-size: 16px; font-weight: 600; color: var(--text-muted); }
+    .plan-period { font-size: 13px; color: var(--text-muted); margin-bottom: 28px; }
+    .plan-features { display: flex; flex-direction: column; gap: 12px; text-align: left; margin-bottom: 28px; }
+    .plan-feature { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+    .plan-feature i { color: var(--teal); width: 16px; }
+    .plan-feature.no { color: var(--text-muted); }
+    .plan-feature.no i { color: var(--text-muted); }
+    .benefits-section { max-width: 1000px; margin: 0 auto 80px; }
+    .benefits-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    .benefit-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; transition: all 0.2s; }
+    .benefit-card:hover { transform: translateY(-4px); border-color: rgba(124,58,237,0.4); }
+    .benefit-icon { font-size: 32px; color: var(--orange); display: block; margin-bottom: 12px; }
+    .benefit-title { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+    .benefit-desc { font-size: 13px; color: var(--text-muted); }
+    @media(max-width:900px){ .plans-grid{ grid-template-columns:1fr; max-width:400px; } .benefits-grid{ grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:500px){ .benefits-grid{ grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="nav-logo"><div class="logo-icon"><i class="fa-solid fa-bolt"></i></div><span class="logo-text">FASHOTF</span><span class="logo-sub">DELIVERY</span></div>
+  <ul class="nav-links">
+    <li><a href="../index.html"><i class="fa-solid fa-compass"></i> Explorar</a></li>
+    <li><a href="menu.html"><i class="fa-solid fa-utensils"></i> Menú</a></li>
+    <li><a href="ofertas.html"><i class="fa-solid fa-fire"></i> Ofertas</a></li>
+    <li><a href="rastreo.html"><i class="fa-solid fa-map-pin"></i> Rastreo</a></li>
+    <li><a href="historial.html"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a></li>
+    <li><a href="cliente.html"><i class="fa-solid fa-user"></i> Mi Cuenta</a></li>
+  </ul>
+  <div class="nav-actions"><a href="carrito.html" class="btn-cart"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count" id="cartCount">0</span></a><a href="login.html" class="btn-login"><i class="fa-solid fa-right-to-bracket"></i> Sesión</a></div>
+</nav>
+
+<div class="club-hero">
+  <div class="orb orb1"></div>
+  <i class="fa-solid fa-crown crown-big"></i>
+  <h1>FASHCLUB PREMIUM</h1>
+  <p>Únete al club y disfruta de beneficios exclusivos en cada pedido</p>
+  <a href="#planes" class="btn-primary big"><i class="fa-solid fa-crown"></i> Ver Planes</a>
+</div>
+
+<div class="benefits-section container">
+  <div class="section-header" style="margin-bottom:32px;"><h2><i class="fa-solid fa-award" style="color:var(--purple)"></i> Beneficios exclusivos</h2></div>
+  <div class="benefits-grid">
+    <div class="benefit-card"><i class="fa-solid fa-bolt benefit-icon"></i><div class="benefit-title">Envío prioritario</div><div class="benefit-desc">Tus pedidos siempre primero en la cola</div></div>
+    <div class="benefit-card"><i class="fa-solid fa-percent benefit-icon"></i><div class="benefit-title">Cashback 5%</div><div class="benefit-desc">Recibe saldo en cada compra</div></div>
+    <div class="benefit-card"><i class="fa-solid fa-gift benefit-icon"></i><div class="benefit-title">Cupones mensuales</div><div class="benefit-desc">4 cupones de $5 cada mes</div></div>
+    <div class="benefit-card"><i class="fa-solid fa-headset benefit-icon"></i><div class="benefit-title">Soporte 24/7</div><div class="benefit-desc">Chat exclusivo con agente dedicado</div></div>
+    <div class="benefit-card"><i class="fa-solid fa-star benefit-icon"></i><div class="benefit-title">Puntos dobles</div><div class="benefit-desc">Acumula FashPoints al doble de velocidad</div></div>
+    <div class="benefit-card"><i class="fa-solid fa-bell benefit-icon"></i><div class="benefit-title">Ofertas anticipadas</div><div class="benefit-desc">Acceso antes que nadie a las promos</div></div>
+    <div class="benefit-card"><i class="fa-solid fa-utensils benefit-icon"></i><div class="benefit-title">Menú premium</div><div class="benefit-desc">Platos exclusivos solo para miembros</div></div>
+    <div class="benefit-card"><i class="fa-solid fa-cake-candles benefit-icon"></i><div class="benefit-title">Regalo de cumpleaños</div><div class="benefit-desc">Sorpresa especial en tu día</div></div>
+  </div>
+</div>
+
+<div class="container" id="planes">
+  <div class="section-header" style="margin-bottom:40px;"><h2><i class="fa-solid fa-gem" style="color:var(--purple)"></i> Elige tu plan</h2></div>
+  <div class="plans-grid">
+    <div class="plan-card">
+      <i class="fa-solid fa-star plan-icon" style="color:var(--text-muted)"></i>
+      <div class="plan-name">Básico</div>
+      <div class="plan-price" style="color:var(--text);">Gratis</div>
+      <div class="plan-period">Para siempre</div>
+      <div class="plan-features">
+        <div class="plan-feature"><i class="fa-solid fa-check"></i> Acceso al menú completo</div>
+        <div class="plan-feature"><i class="fa-solid fa-check"></i> Rastreo en tiempo real</div>
+        <div class="plan-feature no"><i class="fa-solid fa-xmark"></i> Envío gratis</div>
+        <div class="plan-feature no"><i class="fa-solid fa-xmark"></i> Cashback</div>
+        <div class="plan-feature no"><i class="fa-solid fa-xmark"></i> Soporte prioritario</div>
+      </div>
+      <button class="btn-secondary" style="width:100%;justify-content:center;">Plan actual</button>
+    </div>
+    <div class="plan-card featured">
+      <i class="fa-solid fa-crown plan-icon" style="margin-top:20px;color:var(--purple);"></i>
+      <div class="plan-name">FashClub Premium</div>
+      <div class="plan-price" style="color:var(--purple);">$9<span>/mes</span></div>
+      <div class="plan-period">Facturado mensualmente</div>
+      <div class="plan-features">
+        <div class="plan-feature"><i class="fa-solid fa-check"></i> Envío gratis ilimitado</div>
+        <div class="plan-feature"><i class="fa-solid fa-check"></i> Cashback 5%</div>
+        <div class="plan-feature"><i class="fa-solid fa-check"></i> 4 cupones/mes</div>
+        <div class="plan-feature"><i class="fa-solid fa-check"></i> Soporte 24/7</div>
+        <div class="plan-feature"><i class="fa-solid fa-check"></i> Puntos dobles</div>
+      </div>
+      <button class="btn-primary" style="width:100%;justify-content:center;background:var(--purple);" onclick="showToast('¡Bienvenido/a a FashClub!', 'fa-crown')"><i class="fa-solid fa-crown"></i> Suscribirme</button>
+    </div>
+    <div class="plan-card">
+      <i class="fa-solid fa-gem plan-icon" style="color:var(--yellow);"></i>
+      <div class="plan-name">FashClub Anual</div>
+      <div class="plan-price" style="color:var(--yellow);">$79<span>/año</span></div>
+      <div class="plan-period">Ahorra $29 vs mensual</div>
+      <div class="plan-features">
+        <div class="plan-feature"><i class="fa-solid fa-check"></i> Todo lo de Premium</div>
+        <div class="plan-feature"><i class="fa-solid fa-check"></i> Cashback 8%</div>
+        <div class="plan-feature"><i class="fa-solid fa-check"></i> 6 cupones/mes</div>
+        <div class="plan-feature"><i class="fa-solid fa-check"></i> Menú exclusivo</div>
+        <div class="plan-feature"><i class="fa-solid fa-check"></i> Regalo de cumpleaños</div>
+      </div>
+      <button class="btn-primary" style="width:100%;justify-content:center;background:var(--yellow);color:#000;" onclick="showToast('¡Plan anual activado!', 'fa-gem')"><i class="fa-solid fa-crown"></i> Mejor valor</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer"><div class="container"><div class="footer-bottom">© 2026 FASHOTF DELIVERY. Todos los derechos reservados.</div></div></footer>
+<script src="../js/main.js"></script>
+</body>
+</html>
