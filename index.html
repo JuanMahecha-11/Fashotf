@@ -2,39 +2,259 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fashotf Delivery - Comida Rápida a Domicilio</title>
-  <link rel="stylesheet" href="css/main.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FASHOTF Delivery | Comida rápida a domicilio</title>
+  <meta name="description" content="FASHOTF Delivery te ofrece comida rápida, restaurantes top y promociones exclusivas a domicilio." />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-<!-- NAVBAR -->
-<nav class="navbar" id="navbar">
-  <div class="nav-logo">
-    <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
-    <span class="logo-text">FASHOTF</span>
-    <span class="logo-sub">DELIVERY</span>
-  </div>
-  <ul class="nav-links">
-    <li><a href="index.html" class="active"><i class="fa-solid fa-compass"></i> Explorar</a></li>
-    <li><a href="pages/menu.html"><i class="fa-solid fa-utensils"></i> Menú</a></li>
-    <li><a href="pages/ofertas.html"><i class="fa-solid fa-fire"></i> Ofertas</a></li>
-    <li><a href="pages/rastreo.html"><i class="fa-solid fa-map-pin"></i> Rastreo</a></li>
-    <li><a href="pages/historial.html"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a></li>
-    <li><a href="pages/cliente.html"><i class="fa-solid fa-user-gear"></i> Mi Cuenta</a></li>
-  </ul>
-  <div class="nav-actions">
-    <a href="pages/carrito.html" class="btn-cart">
-      <i class="fa-solid fa-bag-shopping"></i>
-      <span class="cart-count" id="cartCount">0</span>
-    </a>
-    <a href="pages/login.html" class="btn-login"><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión</a>
-    <button class="hamburger" onclick="toggleMobile()"><i class="fa-solid fa-bars"></i></button>
-  </div>
-</nav>
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg">
-    <div class="orb orb1"></div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
+      <div>
+        <span class="logo-text">FASHOTF</span>
+        <span class="logo-sub">DELIVERY</span>
+      </div>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="active"><i class="fa-solid fa-compass"></i> Explorar</a></li>
+      <li><a href="pages/menu.html"><i class="fa-solid fa-utensils"></i> Menú</a></li>
+      <li><a href="pages/ofertas.html"><i class="fa-solid fa-fire"></i> Ofertas</a></li>
+      <li><a href="pages/rastreo.html"><i class="fa-solid fa-map-pin"></i> Rastreo</a></li>
+      <li><a href="pages/historial.html"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a></li>
+      <li><a href="pages/cliente.html"><i class="fa-solid fa-user-gear"></i> Mi Cuenta</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="pages/carrito.html" class="btn-cart" aria-label="Carrito">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+      <a href="pages/login.html" class="btn-login"><i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión</a>
+      <button class="hamburger" onclick="toggleMobile()" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-bg">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+        <div class="grid-overlay"></div>
+      </div>
+
+      <div class="container hero-layout">
+        <div class="hero-content">
+          <div class="hero-badge"><i class="fa-solid fa-bolt"></i> Entrega rápida en 20-30 min</div>
+          <h1 class="hero-title">La comida que te <span class="gradient-text">saca del estrés</span></h1>
+          <p class="hero-desc">Descubre burgers, sushi, pizza y bebidas con entrega veloz, promociones del día y restaurantes que te encantan.</p>
+
+          <div class="hero-cta">
+            <a href="pages/menu.html" class="btn-primary big"><i class="fa-solid fa-utensils"></i> Ver menú</a>
+            <a href="pages/ofertas.html" class="btn-secondary"><i class="fa-solid fa-fire"></i> Ver ofertas</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-num">4.9/5</span>
+              <span class="stat-lbl">Valoración</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-num">12k+</span>
+              <span class="stat-lbl">Pedidos al día</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-num">200+</span>
+              <span class="stat-lbl">Productos</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="phone-mockup">
+            <div class="phone-screen">
+              <div class="phone-header">
+                <span>Ahora</span>
+                <span>18 min</span>
+              </div>
+
+              <div class="phone-map">
+                <div class="pulse-ring"></div>
+                <div class="map-pin"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="rider-icon"><i class="fa-solid fa-motorcycle"></i></div>
+              </div>
+
+              <div class="phone-order-card">
+                <div class="order-img">
+                  <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=300&q=80" alt="Burger" />
+                </div>
+                <div>
+                  <div class="order-name">Doble Bacon Burger</div>
+                  <div class="order-status"><span class="dot-green"></span> El repartidor va en camino</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-card card-a"><i class="fa-solid fa-bicycle"></i> Envío gratis</div>
+          <div class="floating-card card-b"><i class="fa-solid fa-star"></i> 4.9 calificación</div>
+          <div class="floating-card card-c"><i class="fa-solid fa-clock"></i> 18 min</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-cats container">
+      <div class="cats-row" aria-label="Categorías populares">
+        <button class="cat-chip active" onclick="filterCat(this, 'todos')">Todos</button>
+        <button class="cat-chip" onclick="filterCat(this, 'burger')"><i class="fa-solid fa-burger"></i> Burgers</button>
+        <button class="cat-chip" onclick="filterCat(this, 'pizza')"><i class="fa-solid fa-pizza-slice"></i> Pizzas</button>
+        <button class="cat-chip" onclick="filterCat(this, 'sushi')"><i class="fa-solid fa-fish"></i> Sushi</button>
+        <button class="cat-chip" onclick="filterCat(this, 'pollo')"><i class="fa-solid fa-drumstick-bite"></i> Pollo</button>
+        <button class="cat-chip" onclick="filterCat(this, 'saludable')"><i class="fa-solid fa-leaf"></i> Saludable</button>
+        <button class="cat-chip" onclick="filterCat(this, 'bebidas')"><i class="fa-solid fa-mug-hot"></i> Bebidas</button>
+        <button class="cat-chip" onclick="filterCat(this, 'postres')"><i class="fa-solid fa-cake-candles"></i> Postres</button>
+      </div>
+    </section>
+
+    <section class="modules">
+      <div class="container">
+        <div class="modules-grid">
+          <div class="module-card mod-orange" onclick="window.location.href='pages/menu.html'">
+            <div class="mod-icon"><i class="fa-solid fa-utensils"></i></div>
+            <div>
+              <div class="mod-title">Menú a tu medida</div>
+              <div class="mod-desc">Descubre tus favoritos</div>
+            </div>
+            <div class="mod-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+
+          <div class="module-card mod-purple" onclick="window.location.href='pages/ofertas.html'">
+            <div class="mod-icon"><i class="fa-solid fa-fire"></i></div>
+            <div>
+              <div class="mod-title">Ofertas exclusivas</div>
+              <div class="mod-desc">Descuentos del día</div>
+            </div>
+            <div class="mod-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+
+          <div class="module-card mod-teal" onclick="window.location.href='pages/rastreo.html'">
+            <div class="mod-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <div class="mod-title">Rastreo en vivo</div>
+              <div class="mod-desc">Sigue tu pedido</div>
+            </div>
+            <div class="mod-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+
+          <div class="module-card mod-red" onclick="window.location.href='pages/fash-club.html'">
+            <div class="mod-icon"><i class="fa-solid fa-crown"></i></div>
+            <div>
+              <div class="mod-title">Fash Club</div>
+              <div class="mod-desc">Beneficios premium</div>
+            </div>
+            <div class="mod-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="popular">
+      <div class="container">
+        <div class="section-header">
+          <h2><i class="fa-solid fa-bolt section-icon-orange"></i> Populares</h2>
+          <a class="ver-todo" href="pages/menu.html">Ver todo</a>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+      </div>
+    </section>
+
+    <section class="promo-banner">
+      <div class="container">
+        <div class="promo-inner">
+          <div class="promo-text">
+            <div class="promo-badge">PROMOCIÓN LIMITADA</div>
+            <h3>Obtén 20% de descuento en tu primer pedido</h3>
+            <p>Aplica hoy mismo con tu cuenta y disfruta entrega más rápida en tus favoritos.</p>
+            <a href="pages/login.html" class="btn-primary"><i class="fa-solid fa-crown"></i> Unirme</a>
+          </div>
+          <div class="promo-graphic"><i class="fa-solid fa-percent"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="restaurants">
+      <div class="container">
+        <div class="section-header">
+          <h2><i class="fa-solid fa-store section-icon-orange"></i> Restaurantes top</h2>
+          <a class="ver-todo" href="pages/menu.html">Explorar</a>
+        </div>
+        <div class="rest-grid" id="restGrid"></div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="container">
+        <div class="cta-box">
+          <h2>¿Listo para tu próxima comida?</h2>
+          <p>Ordena hoy mismo y disfruta sabores de calidad con la velocidad que necesitas.</p>
+          <a href="pages/menu.html" class="btn-primary big"><i class="fa-solid fa-cart-shopping"></i> Pedir ahora</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-row">
+            <div class="logo-icon sm"><i class="fa-solid fa-bolt"></i></div>
+            <span>FASHOTF</span>
+          </div>
+          <p>Tu mejor opción para pedir comida rápida, fresca y con la comodidad que siempre buscas.</p>
+          <div class="social-row">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Empresa</h4>
+          <a href="pages/menu.html">Menú</a>
+          <a href="pages/ofertas.html">Ofertas</a>
+          <a href="pages/fash-club.html">Fash Club</a>
+        </div>
+
+        <div class="footer-links">
+          <h4>Soporte</h4>
+          <a href="pages/rastreo.html">Rastreo</a>
+          <a href="pages/historial.html">Historial</a>
+          <a href="pages/cliente.html">Mi cuenta</a>
+        </div>
+
+        <div class="footer-links">
+          <h4>Legal</h4>
+          <a href="#">Términos</a>
+          <a href="#">Privacidad</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">© 2026 FASHOTF DELIVERY. Todos los derechos reservados.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>
 

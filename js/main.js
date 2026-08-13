@@ -2,6 +2,15 @@
 
 let cart = JSON.parse(localStorage.getItem('fashotf_cart') || '[]');
 
+function formatCOP(value) {
+  const n = Number(value || 0);
+  return new Intl.NumberFormat('es-CO', {
+    style: 'currency',
+    currency: 'COP',
+    maximumFractionDigits: 0
+  }).format(n);
+}
+
 function updateCartCount() {
   const count = cart.reduce((acc, i) => acc + i.qty, 0);
   document.querySelectorAll('#cartCount').forEach(el => el.textContent = count);

@@ -6,74 +6,6 @@
   <link rel="stylesheet" href="../css/main.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <style>
-    .rastreo-layout { display: grid; grid-template-columns: 1fr 420px; gap: 32px; padding: 32px 0 80px; }
-    .map-container {
-      background: linear-gradient(135deg, #0a1628 0%, #0d1f3c 50%, #0a1628 100%);
-      border-radius: 24px; border: 1px solid var(--border);
-      min-height: 500px; position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .rider-path { position: absolute; bottom: 30%; left: 20%; animation: rideAlong 6s linear infinite; }
-    @keyframes rideAlong {
-      0% { left: 15%; bottom: 35%; }
-      25% { left: 35%; bottom: 50%; }
-      50% { left: 55%; bottom: 40%; }
-      75% { left: 65%; bottom: 55%; }
-      100% { left: 75%; bottom: 60%; }
-    }
-    .rider-dot {
-      width: 50px; height: 50px; background: var(--orange);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 20px; color: #fff; box-shadow: 0 0 30px var(--orange); position: relative;
-    }
-    .rider-dot::before {
-      content: ''; position: absolute; width: 80px; height: 80px; border-radius: 50%;
-      border: 2px solid var(--orange); opacity: 0.4; animation: pulse 2s ease infinite;
-    }
-    .dest-pin { position: absolute; top: 25%; right: 20%; color: var(--teal); font-size: 32px; filter: drop-shadow(0 0 10px var(--teal)); }
-    .origin-pin { position: absolute; bottom: 25%; left: 15%; color: var(--red); font-size: 28px; }
-    .map-label { position: absolute; background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); border-radius: 10px; padding: 8px 14px; font-size: 12px; font-weight: 700; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 6px; }
-    .map-label-a { top: 20%; right: 15%; color: var(--teal); }
-    .map-label-b { bottom: 22%; left: 12%; color: var(--red); }
-
-    .order-panel { display: flex; flex-direction: column; gap: 20px; }
-    .panel-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
-    .panel-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
-
-    .steps { display: flex; flex-direction: column; gap: 0; }
-    .step { display: flex; gap: 16px; position: relative; }
-    .step:not(:last-child)::after { content: ''; position: absolute; left: 18px; top: 40px; width: 2px; height: 44px; background: var(--border); }
-    .step.done::after { background: var(--teal); }
-    .step.active::after { background: linear-gradient(var(--teal), var(--border)); }
-    .step-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; margin-top: 2px; }
-    .step.done .step-icon { background: rgba(0,212,170,0.2); color: var(--teal); }
-    .step.active .step-icon { background: rgba(255,90,31,0.2); color: var(--orange); animation: pulse 1.5s infinite; }
-    .step.pending .step-icon { background: var(--surface2); color: var(--text-muted); }
-    .step-text { padding-bottom: 28px; }
-    .step-title { font-weight: 700; font-size: 14px; }
-    .step-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-
-    .rider-card { display: flex; align-items: center; gap: 16px; }
-    .rider-avatar { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--orange); }
-    .rider-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .rider-name { font-weight: 800; font-size: 16px; }
-    .rider-stats { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
-    .rider-actions { margin-left: auto; display: flex; gap: 10px; }
-    .icon-btn { width: 42px; height: 42px; background: var(--surface2); border-radius: 12px; border: 1px solid var(--border); color: var(--text); font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-    .icon-btn:hover { background: var(--orange); border-color: var(--orange); color: #fff; }
-
-    .eta-big { text-align: center; padding: 24px 0; }
-    .eta-num { font-family: 'Bebas Neue'; font-size: 72px; color: var(--orange); line-height: 1; }
-    .eta-lbl { font-size: 14px; color: var(--text-muted); font-weight: 600; }
-
-    .order-items { display: flex; flex-direction: column; gap: 10px; }
-    .order-item { display: flex; justify-content: space-between; font-size: 14px; padding: 10px 0; border-bottom: 1px solid var(--border); }
-    .order-item:last-child { border-bottom: none; }
-    .order-total { font-size: 18px; font-weight: 800; color: var(--orange); }
-
-    @media(max-width:1024px){ .rastreo-layout{ grid-template-columns:1fr; } }
-  </style>
 </head>
 <body>
 <nav class="navbar" id="navbar">
@@ -91,7 +23,7 @@
 
 <section class="page-header">
   <div class="container">
-    <h1><i class="fa-solid fa-map-pin" style="color:var(--orange)"></i> Rastreo en Vivo</h1>
+    <h1 class="page-header-title"><i class="fa-solid fa-map-pin"></i> Rastreo en Vivo</h1>
     <p>Sigue tu pedido en tiempo real desde la cocina hasta tu puerta</p>
   </div>
 </section>
@@ -100,11 +32,11 @@
   <div class="rastreo-layout">
     <div>
       <div class="map-container">
-        <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,0.03) 0px,rgba(255,255,255,0.03) 1px,transparent 1px,transparent 60px),repeating-linear-gradient(90deg,rgba(255,255,255,0.03) 0px,rgba(255,255,255,0.03) 1px,transparent 1px,transparent 60px);"></div>
-        <div style="position:absolute;width:100%;height:3px;top:35%;background:rgba(255,255,255,0.08);"></div>
-        <div style="position:absolute;width:100%;height:3px;top:65%;background:rgba(255,255,255,0.08);"></div>
-        <div style="position:absolute;width:3px;height:100%;left:30%;background:rgba(255,255,255,0.08);"></div>
-        <div style="position:absolute;width:3px;height:100%;left:60%;background:rgba(255,255,255,0.08);"></div>
+        <div class="map-grid-overlay"></div>
+        <div class="map-line map-line-top"></div>
+        <div class="map-line map-line-bottom"></div>
+        <div class="map-line map-line-left"></div>
+        <div class="map-line map-line-right"></div>
 
         <div class="origin-pin"><i class="fa-solid fa-store"></i></div>
         <div class="dest-pin"><i class="fa-solid fa-house"></i></div>
@@ -116,21 +48,21 @@
         <div class="map-label map-label-a"><i class="fa-solid fa-house"></i> Tu dirección</div>
         <div class="map-label map-label-b"><i class="fa-solid fa-store"></i> Restaurante</div>
 
-        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.6);backdrop-filter:blur(20px);border-radius:16px;padding:20px 32px;text-align:center;border:1px solid rgba(255,90,31,0.3);">
-          <div style="font-size:13px;color:var(--text-muted);margin-bottom:4px;">LLEGA EN</div>
-          <div style="font-family:'Bebas Neue';font-size:48px;color:var(--orange);line-height:1;" id="etaTimer">18</div>
-          <div style="font-size:13px;color:var(--text-muted);">MINUTOS</div>
+        <div class="eta-box">
+          <div class="eta-label">LLEGA EN</div>
+          <div class="eta-time" id="etaTimer">18</div>
+          <div class="eta-minutes">MINUTOS</div>
         </div>
       </div>
 
-      <div style="display:flex;gap:14px;margin-top:20px;">
-        <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;align-items:center;gap:12px;">
-          <i class="fa-solid fa-store" style="font-size:22px;color:var(--orange);"></i>
-          <div><div style="font-weight:700;font-size:13px;">Origen</div><div style="font-size:12px;color:var(--text-muted);">Burger Palace, Calle 80</div></div>
+      <div class="location-row">
+        <div class="location-box">
+          <i class="fa-solid fa-store icon-orange"></i>
+          <div><div class="location-title">Origen</div><div class="location-text">Burger Palace, Calle 80</div></div>
         </div>
-        <div style="flex:1;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;align-items:center;gap:12px;">
-          <i class="fa-solid fa-location-dot" style="font-size:22px;color:var(--teal);"></i>
-          <div><div style="font-weight:700;font-size:13px;">Destino</div><div style="font-size:12px;color:var(--text-muted);">Cra 15 #45-23, Apt 301</div></div>
+        <div class="location-box">
+          <i class="fa-solid fa-location-dot icon-teal"></i>
+          <div><div class="location-title">Destino</div><div class="location-text">Cra 15 #45-23, Apt 301</div></div>
         </div>
       </div>
     </div>
@@ -141,8 +73,8 @@
           <div class="eta-num" id="etaBig">18</div>
           <div class="eta-lbl">MINUTOS ESTIMADOS</div>
         </div>
-        <div style="background:rgba(255,90,31,0.1);border-radius:10px;padding:10px 14px;text-align:center;font-size:13px;font-weight:600;color:var(--orange);">
-          <i class="fa-solid fa-circle" style="font-size:8px;animation:blink 1s infinite;"></i> Tu pedido está en camino
+        <div class="status-inline">
+          <i class="fa-solid fa-circle"></i> Tu pedido está en camino
         </div>
       </div>
 
@@ -174,7 +106,7 @@
           <div class="rider-avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Carlos M." /></div>
           <div>
             <div class="rider-name">Carlos Martínez</div>
-            <div class="rider-stats"><i class="fa-solid fa-star" style="color:var(--yellow)"></i> 4.9 · 1,243 entregas</div>
+            <div class="rider-stats"><i class="fa-solid fa-star star-yellow"></i> 4.9 · 1,243 entregas</div>
           </div>
           <div class="rider-actions">
             <button class="icon-btn" onclick="showToast('Llamando a Carlos...', 'fa-phone')"><i class="fa-solid fa-phone"></i></button>
@@ -186,12 +118,12 @@
       <div class="panel-card">
         <h3><i class="fa-solid fa-receipt"></i> Tu pedido</h3>
         <div class="order-items">
-          <div class="order-item"><span>Doble Bacon Burger x1</span><span>$14.50</span></div>
-          <div class="order-item"><span>Frappé Caramelo x1</span><span>$6.50</span></div>
+          <div class="order-item"><span>Doble Bacon Burger x1</span><span>${formatCOP(14500)}</span></div>
+          <div class="order-item"><span>Frappé Caramelo x1</span><span>${formatCOP(6500)}</span></div>
           <div class="order-item"><span>Domicilio</span><span>Gratis</span></div>
-          <div class="order-item" style="padding-top:14px;">
-            <span style="font-weight:700;">Total</span>
-            <span class="order-total">$21.00</span>
+          <div class="order-item order-item-total">
+            <span>Total</span>
+            <span class="order-total">${formatCOP(21000)}</span>
           </div>
         </div>
       </div>

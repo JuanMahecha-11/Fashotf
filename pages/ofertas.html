@@ -6,34 +6,6 @@
   <link rel="stylesheet" href="../css/main.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <style>
-    .countdown { display: flex; gap: 12px; align-items: center; margin-bottom: 40px; }
-    .countdown-unit { background: var(--surface); border-radius: 12px; padding: 16px 20px; text-align: center; border: 1px solid rgba(255,90,31,0.3); min-width: 72px; }
-    .countdown-num { font-family: 'Bebas Neue'; font-size: 42px; color: var(--orange); line-height: 1; display: block; }
-    .countdown-lbl { font-size: 10px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-    .countdown-sep { font-family: 'Bebas Neue'; font-size: 36px; color: var(--orange); }
-    .flash-header { background: linear-gradient(135deg, rgba(255,90,31,0.15), rgba(255,90,31,0.05)); border: 1px solid rgba(255,90,31,0.3); border-radius: 20px; padding: 40px 48px; margin-bottom: 48px; display: flex; justify-content: space-between; align-items: center; }
-    .flash-title { font-family: 'Bebas Neue'; font-size: 48px; color: var(--orange); margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
-    .flash-sub { font-size: 16px; color: var(--text-muted); }
-    .offers-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
-    .offer-card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; transition: all 0.3s; }
-    .offer-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(0,0,0,0.4); border-color: rgba(255,90,31,0.4); }
-    .offer-img { height: 160px; position: relative; overflow: hidden; background: var(--surface2); }
-    .offer-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
-    .offer-card:hover .offer-img img { transform: scale(1.06); }
-    .offer-discount { position: absolute; top: 10px; right: 10px; background: var(--orange); color: #fff; font-weight: 800; font-size: 13px; padding: 4px 10px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-    .offer-body { padding: 16px; }
-    .offer-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
-    .offer-rest { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
-    .price-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-    .price-new { font-size: 20px; font-weight: 800; color: var(--orange); }
-    .price-old { font-size: 14px; color: var(--text-muted); text-decoration: line-through; }
-    .timer-badge { background: rgba(239,68,68,0.15); color: var(--red); font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px; }
-    .section-divider { margin: 48px 0 32px; }
-    .section-divider h2 { font-size: 24px; font-weight: 800; padding-bottom: 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
-    @media(max-width:1024px){ .offers-grid{ grid-template-columns:repeat(2,1fr); } .flash-header{ flex-direction:column; gap:24px; } }
-    @media(max-width:600px){ .offers-grid{ grid-template-columns:1fr; } }
-  </style>
 </head>
 <body>
 <nav class="navbar" id="navbar">
@@ -50,17 +22,17 @@
 </nav>
 
 <section class="page-header">
-  <div class="container"><h1><i class="fa-solid fa-bolt" style="color:var(--orange)"></i> Ofertas Flash</h1><p>Descuentos especiales por tiempo limitado</p></div>
+  <div class="container"><h1 class="page-header-title"><i class="fa-solid fa-bolt"></i> Ofertas Flash</h1><p>Descuentos especiales por tiempo limitado</p></div>
 </section>
 
-<div class="container" style="padding:40px 24px 80px;">
+<div class="container offers-page">
   <div class="flash-header">
     <div>
       <div class="flash-title"><i class="fa-solid fa-fire"></i> OFERTAS DEL DÍA</div>
       <div class="flash-sub">Aprovecha antes de que expire la cuenta regresiva</div>
     </div>
     <div>
-      <div style="font-size:13px;color:var(--text-muted);font-weight:600;margin-bottom:12px;text-align:center;">TERMINA EN</div>
+      <div class="countdown-caption">TERMINA EN</div>
       <div class="countdown">
         <div class="countdown-unit"><span class="countdown-num" id="hours">05</span><span class="countdown-lbl">Horas</span></div>
         <div class="countdown-sep">:</div>
@@ -73,17 +45,29 @@
 
   <div class="offers-grid" id="offersGrid"></div>
 
-  <div class="section-divider"><h2><i class="fa-solid fa-ticket" style="color:var(--orange)"></i> Cupones disponibles</h2></div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:60px;">
-  
-      <div style="background:var(--surface);border:1px dashed ${c.color};border-radius:16px;padding:24px;display:flex;justify-content:space-between;align-items:center;">
-        <div>
-          <div style="font-family:'Bebas Neue';font-size:24px;color:${c.color};letter-spacing:2px;">${CODIGO DE DESCUENTOS}</div>
-          <div style="font-size:13px;color:var(--text-muted);margin-top:4px;">PREMIUM</div>
-        </div>
-        <button onclick="copyCoupon('${C.CUPON}')" style="padding:8px 16px;background:${c.color};color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;display:inline-flex;align-items:center;gap:6px;"><i class="fa-solid fa-copy"></i> Copiar</button>
+  <div class="section-divider"><h2><i class="fa-solid fa-ticket"></i> Cupones disponibles</h2></div>
+  <div class="coupon-grid">
+    <div class="coupon-card">
+      <div>
+        <div class="coupon-code">FASH10</div>
+        <div class="coupon-tag">PREMIUM</div>
       </div>
-  
+      <button class="coupon-btn" onclick="copyCoupon('FASH10')"><i class="fa-solid fa-copy"></i> Copiar</button>
+    </div>
+    <div class="coupon-card">
+      <div>
+        <div class="coupon-code">FAST20</div>
+        <div class="coupon-tag">DELIVERY</div>
+      </div>
+      <button class="coupon-btn" onclick="copyCoupon('FAST20')"><i class="fa-solid fa-copy"></i> Copiar</button>
+    </div>
+    <div class="coupon-card">
+      <div>
+        <div class="coupon-code">VIP25</div>
+        <div class="coupon-tag">CLUB</div>
+      </div>
+      <button class="coupon-btn" onclick="copyCoupon('VIP25')"><i class="fa-solid fa-copy"></i> Copiar</button>
+    </div>
   </div>
 </div>
 
@@ -110,18 +94,18 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 const OFFERS = [
-  {id:1, n:'Doble Bacon Burger', img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80', r:'Burger Palace', orig:14.50, disc:30},
-  {id:2, n:'Pizza 4 Quesos', img:'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=400&q=80', r:'Pizza Roma', orig:16.00, disc:25},
-  {id:4, n:'Sushi Roll x20', img:'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=400&q=80', r:'Tokyo House', orig:28.00, disc:40},
-  {id:3, n:'Bowl Saludable', img:'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80', r:'Fresh Bowl', orig:15.90, disc:20},
-  {id:5, n:'Pollo Frito x8', img:'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=400&q=80', r:'Chicken Bros', orig:18.00, disc:35},
-  {id:1, n:'Combo Burger + Papas', img:'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=400&q=80', r:'Burger Palace', orig:22.00, disc:15},
-  {id:6, n:'Tiramisú Artesanal', img:'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=400&q=80', r:'Sweet Corner', orig:9.50, disc:30},
-  {id:7, n:'Smoothie Tropical', img:'https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=400&q=80', r:'Café Urbano', orig:7.00, disc:20}
+  {id:1, n:'Doble Bacon Burger', img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80', r:'Burger Palace', orig:14500, disc:30},
+  {id:2, n:'Pizza 4 Quesos', img:'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=400&q=80', r:'Pizza Roma', orig:16000, disc:25},
+  {id:4, n:'Sushi Roll x20', img:'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=400&q=80', r:'Tokyo House', orig:28000, disc:40},
+  {id:3, n:'Bowl Saludable', img:'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80', r:'Fresh Bowl', orig:15900, disc:20},
+  {id:5, n:'Pollo Frito x8', img:'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=400&q=80', r:'Chicken Bros', orig:18000, disc:35},
+  {id:1, n:'Combo Burger + Papas', img:'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=400&q=80', r:'Burger Palace', orig:22000, disc:15},
+  {id:6, n:'Tiramisú Artesanal', img:'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=400&q=80', r:'Sweet Corner', orig:9500, disc:30},
+  {id:7, n:'Smoothie Tropical', img:'https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=400&q=80', r:'Café Urbano', orig:7000, disc:20}
 ];
 
 document.getElementById('offersGrid').innerHTML = OFFERS.map(o => {
-  const np = (o.orig * (1 - o.disc/100)).toFixed(2);
+  const np = o.orig * (1 - o.disc/100);
   return `
     <div class="offer-card" onclick="addToCart({id:${o.id}, name:'${o.n}', price:${np}, image:'${o.img}'})">
       <div class="offer-img">
@@ -131,8 +115,8 @@ document.getElementById('offersGrid').innerHTML = OFFERS.map(o => {
       <div class="offer-body">
         <div class="offer-name">${o.n}</div>
         <div class="offer-rest"><i class="fa-solid fa-store"></i> ${o.r}</div>
-        <div class="price-row"><span class="price-new">$${np}</span><span class="price-old">$${o.orig.toFixed(2)}</span></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div class="price-row"><span class="price-new">${formatCOP(np)}</span><span class="price-old">${formatCOP(o.orig)}</span></div>
+        <div class="offer-actions">
           <span class="timer-badge"><i class="fa-solid fa-clock"></i> Solo hoy</span>
           <button class="btn-add" onclick="event.stopPropagation(); addToCart({id:${o.id}, name:'${o.n}', price:${np}, image:'${o.img}'})"><i class="fa-solid fa-plus"></i></button>
         </div>
