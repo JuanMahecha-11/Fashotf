@@ -221,9 +221,18 @@
           </div>
           <p>Tu mejor opción para pedir comida rápida, fresca y con la comodidad que siempre buscas.</p>
           <div class="social-row">
-            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+
+
+<div class="social-row">
+    <a href="https://www.instagram.com/" aria-label="Iniciar sesión">
+        <i class="fa-brands fa-instagram"></i>
+    </a>
+
+    <a href="https://www.facebook.com/" aria-label="Iniciar sesión">
+        <i class="fa-brands fa-facebook-f"></i>
+    </a>
+    
+</div>
           </div>
         </div>
 
@@ -241,18 +250,32 @@
           <a href="pages/cliente.html">Mi cuenta</a>
         </div>
 
-        <div class="footer-links">
-          <h4>Legal</h4>
-          <a href="#">Términos</a>
-          <a href="#">Privacidad</a>
-          <a href="#">Cookies</a>
-        </div>
+      <div class="footer-links">
+    <h4>Legal</h4>
+        <a href="#" onclick="mostrarLegal('terminos'); return false;">
+        Términos
+       </a>
+       <a href="#" onclick="mostrarLegal('privacidad'); return false;">
+        Privacidad
+       </a>
+       <a href="#" onclick="mostrarLegal('cookies'); return false;">
+        Cookies
+       </a>
       </div>
 
       <div class="footer-bottom">© 2026 FASHOTF DELIVERY. Todos los derechos reservados.</div>
     </div>
   </footer>
+    <!-- MODAL LEGAL -->
+<div id="modalLegal" class="modal-legal">
+    <div class="modal-contenido">
+        <button class="cerrar-modal" onclick="cerrarLegal()">×</button>
 
+        <h2 id="tituloLegal"></h2>
+
+        <div id="textoLegal"></div>
+    </div>
+</div>
   <script src="js/main.js"></script>
   <script src="js/products.js"></script>
 </body>
